@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/navigation_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".questions.NavigationViewFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/blue">
+        <TextView
+            android:id="@+id/txt_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textStyle="bold|italic"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:layout_margin="15dp"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_home"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:drawableLeft="@drawable/ic_home"
+        android:background="@null"
+        android:padding="5dp"
+        android:text="Home"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_ytd"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:drawableLeft="@drawable/ic_ytd"
+        android:background="@null"
+        android:padding="5dp"
+        android:text="Youtube videos"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_fb_page"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:drawableLeft="@drawable/ic_fb"
+        android:background="@null"
+        android:text="Facebook page"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_fb_group"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:drawableLeft="@drawable/ic_fb_group"
+        android:padding="5dp"
+        android:background="@null"
+        android:text="Facebook group"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_fb_logout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:drawableLeft="@drawable/ic_logout"
+        android:padding="5dp"
+        android:background="@null"
+        android:text="Logout"
+        android:textAllCaps="false"/>
+
+</LinearLayout>

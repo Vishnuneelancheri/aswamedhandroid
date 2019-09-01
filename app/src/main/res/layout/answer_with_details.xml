@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp" >
+    <TextView
+        android:id="@+id/txt_question"
+        style="@style/option" />
+    <TextView
+        android:id="@+id/txt_opt_a"
+        style="@style/option" />
+    <TextView
+        android:id="@+id/txt_opt_b"
+        style="@style/option" />
+    <TextView
+        android:id="@+id/txt_opt_c"
+        style="@style/option" />
+    <TextView
+        android:id="@+id/txt_opt_d"
+        style="@style/option" />
+
+    <Button
+        android:id="@+id/btn_explanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/explanation"
+        android:background="@null"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
+        android:layout_margin="3dp" />
+</LinearLayout>

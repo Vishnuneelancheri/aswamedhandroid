@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="10dp" />
+<!--
+    <solid android:color="@color/green_righ_answer" />
+-->
+    <gradient
+        android:startColor="@color/green_righ_answer"
+        android:endColor="@color/colorPrimary"
+        android:useLevel="false"
+        android:angle="0"/>
+</shape>
+<!--
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <gradient
+        android:startColor="@color/colorPrimary"
+        android:centerColor="@color/white"
+        android:endColor="@color/colorPrimary"
+        android:useLevel="false"
+        android:angle="90"/>
+    <corners android:radius="10dp" />
+    <stroke android:width="2dp" android:color="@color/black" />
+
+</shape>-->
