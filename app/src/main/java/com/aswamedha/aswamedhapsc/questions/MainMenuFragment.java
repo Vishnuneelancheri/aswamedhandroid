@@ -48,7 +48,8 @@ public class MainMenuFragment extends Fragment {
             }
         });
         recyMainMenu = view.findViewById( R.id.recy_main_menu );
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager( getContext(), LinearLayout.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager( getContext(),
+                RecyclerView.HORIZONTAL, false);
         recyMainMenu.setLayoutManager( layoutManager );
         recyMainMenu.setHasFixedSize( true );
         loadData();
