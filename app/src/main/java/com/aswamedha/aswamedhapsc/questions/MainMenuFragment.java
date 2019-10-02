@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.aswamedha.aswamedhapsc.AswamedhamApplication;
 import com.aswamedha.aswamedhapsc.MyProgressDialog;
 import com.aswamedha.aswamedhapsc.R;
+import com.aswamedha.aswamedhapsc.empnewsnoticeboarddailynotes.CategoryOneFragment;
 import com.aswamedha.aswamedhapsc.networking.Networker;
 import com.google.gson.Gson;
 
@@ -27,7 +29,7 @@ import org.json.JSONObject;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainMenuFragment extends Fragment {
+public class MainMenuFragment extends Fragment implements View.OnClickListener {
 
     private RecyclerView recyMainMenu;
 
@@ -53,6 +55,7 @@ public class MainMenuFragment extends Fragment {
         recyMainMenu.setLayoutManager( layoutManager );
         recyMainMenu.setHasFixedSize( true );
         loadData();
+        view.findViewById( R.id.card_job_search ).setOnClickListener( this  );
         return view;
     }
 
@@ -117,4 +120,16 @@ public class MainMenuFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        if ( id == R.id.card_job_search ){
+            FragmentManager fragmentManager = getFragmentManager();
+            if ( fragmentManager != null ){
+                fragmentManager.
+                        beginTransaction().add( R.id.frame_home, CategoryOneFragment.getInstance("1"))
+                        .addToBackStack("dl").commit();
+            }
+        }
+    }
 }

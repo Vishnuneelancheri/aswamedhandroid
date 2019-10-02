@@ -40,7 +40,7 @@
         app:layout_constraintGuide_percent="0.66" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/card_job_search"
         android:layout_width="0dp"
         android:layout_height="170dp"
         android:layout_margin="2dp"
