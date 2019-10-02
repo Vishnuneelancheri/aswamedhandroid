@@ -13,43 +13,41 @@ import com.aswamedha.aswamedhapsc.R;
 
 import java.util.List;
 
-public class CategoryOneAdapter extends RecyclerView.Adapter<CategoryOneAdapter.ViewHolder> {
-    private List<CategoryOne> mCategoryOneList;
-    private CategoryOneSelector mCategoryOneSelector;
-    public CategoryOneAdapter(List<CategoryOne> categoryOnes, CategoryOneSelector categoryOneSelector){
-        mCategoryOneList = categoryOnes;
-        mCategoryOneSelector = categoryOneSelector;
-
+public class CategoryTwoAdapter extends RecyclerView.Adapter<CategoryTwoAdapter.ViewHolder>{
+    private List< CategoryTwo > mCategoryTwoList;
+    private CategoryTwoSelector mCategoryTwoSelector;
+    public interface CategoryTwoSelector{
+        void select( CategoryTwo categoryTwo );
+    }
+    CategoryTwoAdapter( List<CategoryTwo> categoryTwoList, CategoryTwoSelector categoryTwoSelector ){
+        mCategoryTwoList = categoryTwoList;
+        mCategoryTwoSelector = categoryTwoSelector;
     }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.row_main_menu , parent, false);
-        return new CategoryOneAdapter.ViewHolder( view );
+        return new CategoryTwoAdapter.ViewHolder( view );
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         int pos = holder.getAdapterPosition();
-        final CategoryOne categoryOne = mCategoryOneList.get( pos );
-        holder.txtSlNo.setText( Integer.toString( ( pos + 1 ) ));
-        holder.txtMainMenu.setText( categoryOne.getMenuName() );
+        final CategoryTwo categoryTwo = mCategoryTwoList.get( pos );
+        holder.txtMainMenu.setText( categoryTwo.getSubMenuName() );
+        holder.txtSlNo.setText( Integer.toString( pos + 1 ) );
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCategoryOneSelector.select( categoryOne );
+                mCategoryTwoSelector.select( categoryTwo );
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mCategoryOneList.size();
-    }
-
-    public interface CategoryOneSelector{
-        public void select( CategoryOne categoryOne );
+        return mCategoryTwoList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

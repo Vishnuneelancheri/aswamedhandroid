@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,46 +30,37 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CategoryOneFragment extends Fragment {
-    private RecyclerView mRecyclerViewCategoryOne;
-    private static final String CAT  = "Category";
-    public CategoryOneFragment() {
-        // Required empty public constructor
-    }
-    public static CategoryOneFragment getInstance( String category ){
+public class CategoryTwoFragment extends Fragment {
+    private static final String MAIN_MENU_ID = "main_menu_id";
+    private RecyclerView mRecyclerViewCategoryTwo;
+    public static CategoryTwoFragment getInstance( String mainMenuId ){
         Bundle bundle = new Bundle();
-        bundle.putString( CAT, category );
-        CategoryOneFragment categoryOneFragment =  new CategoryOneFragment();
-        categoryOneFragment.setArguments( bundle );
-        return categoryOneFragment;
+        bundle.putString( MAIN_MENU_ID, mainMenuId );
+        CategoryTwoFragment categoryTwoFragment = new CategoryTwoFragment();
+        categoryTwoFragment.setArguments( bundle );
+        return categoryTwoFragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_category_one, container, false);
-
-        mRecyclerViewCategoryOne = view.findViewById( R.id.recy_cate_one );
+        View view = inflater.inflate(R.layout.fragment_category_two, container, false);
+        mRecyclerViewCategoryTwo = view.findViewById( R.id.recy_cate_two );
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager( getContext(),
                 RecyclerView.VERTICAL, false );
-        mRecyclerViewCategoryOne.setLayoutManager( layoutManager );
-        mRecyclerViewCategoryOne.setHasFixedSize( true );
+        mRecyclerViewCategoryTwo.setLayoutManager( layoutManager );
+        mRecyclerViewCategoryTwo.setHasFixedSize( true );
         Bundle bundle = getArguments();
-        if ( bundle!= null ){
-            String category = getArguments().getString( CAT );
-            if ( category != null && !category.isEmpty() )
-                loadCategory( category );
-        }
-        view.findViewById( R.id.parent ).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Do nothing
+        if ( bundle != null ){
+            String mainMenuId = bundle.getString( MAIN_MENU_ID );
+            if ( mainMenuId!= null ){
+                loadData( mainMenuId );
             }
-        });
+        }
         return view;
     }
-    private void loadCategory( String category ){
+    private void loadData( String mainMenuId ){
         final Activity activity = getActivity();
         if ( activity!= null ){
             SharedPreferences sharedPref =
@@ -81,7 +71,7 @@ public class CategoryOneFragment extends Fragment {
             try{
                 params.put("token", token );
                 params.put("cust_id", regId );
-                params.put("type", category);
+                params.put("main_mnu_id", mainMenuId);
             }catch ( JSONException e ){
                 //Do nothing
             }
@@ -90,7 +80,8 @@ public class CategoryOneFragment extends Fragment {
             myProgressDialog.setCanceledOnTouchOutside( false );
             myProgressDialog.setColor( R.color.colorAccent );
             myProgressDialog.show();
-            String url = AswamedhamApplication.IP_ADDRESS + "EmploymentNewsDailyNotes/getAllEmploymentDailyMainMenuCustomer";
+            String url =
+                    AswamedhamApplication.IP_ADDRESS + "EmploymentNewsDailyNotes/getAllEmploymentDailySubMenuCustomer";
             Networker.getInstance().posting(activity, url, params, new Networker.ResponseBridge() {
                 @Override
                 public void onSuccess(String response) {
@@ -104,7 +95,6 @@ public class CategoryOneFragment extends Fragment {
                     Toast.makeText( activity,"Some error occurred", Toast.LENGTH_LONG ).show();
                 }
             });
-
         }
     }
     private void analyzeResponse( String response ){
@@ -112,26 +102,18 @@ public class CategoryOneFragment extends Fragment {
         if ( activity != null ){
             try{
                 EmpDailyNotice empDailyNotice = new Gson().fromJson( response, EmpDailyNotice.class );
-                if ( empDailyNotice.getStatus().getStatus() > 0 ){
-                    List< CategoryOne > categoryOneList = empDailyNotice.getCategoryOneList();
-                    CategoryOneAdapter categoryOneAdapter = new CategoryOneAdapter(categoryOneList, new CategoryOneAdapter.CategoryOneSelector() {
-                        @Override
-                        public void select(CategoryOne categoryOne) {
-                            FragmentManager fragmentManager = getFragmentManager();
-                            if ( fragmentManager!= null ){
-                                fragmentManager.beginTransaction().addToBackStack("sofa")
-                                        .add(  R.id.frame_home,CategoryTwoFragment.getInstance( categoryOne.getId())).commit();
+                List<CategoryTwo> categoryTwoList = empDailyNotice.getCategoryTwoList();
+                CategoryTwoAdapter categoryTwoAdapter = new CategoryTwoAdapter(categoryTwoList,
+                        new CategoryTwoAdapter.CategoryTwoSelector() {
+                            @Override
+                            public void select(CategoryTwo categoryTwo) {
+
                             }
-                        }
-                    });
-                    mRecyclerViewCategoryOne.setAdapter( categoryOneAdapter );
-                }else
-                    Toast.makeText( activity, empDailyNotice.getStatus().getMessage(), Toast.LENGTH_SHORT ).show();
+                        });
+                mRecyclerViewCategoryTwo.setAdapter( categoryTwoAdapter );
             }catch ( Exception e ){
                 Toast.makeText( activity, "Something went wrong", Toast.LENGTH_LONG ).show();
             }
         }
-
     }
-
 }
