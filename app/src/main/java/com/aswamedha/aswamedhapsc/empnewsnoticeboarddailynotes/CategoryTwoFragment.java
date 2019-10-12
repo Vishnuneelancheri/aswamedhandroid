@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -107,13 +108,20 @@ public class CategoryTwoFragment extends Fragment {
                         new CategoryTwoAdapter.CategoryTwoSelector() {
                             @Override
                             public void select(CategoryTwo categoryTwo) {
-
+                                changeFragment( categoryTwo.getId() );
                             }
                         });
                 mRecyclerViewCategoryTwo.setAdapter( categoryTwoAdapter );
             }catch ( Exception e ){
                 Toast.makeText( activity, "Something went wrong", Toast.LENGTH_LONG ).show();
             }
+        }
+    }
+    private void changeFragment(String subMenuId ){
+        FragmentManager fragmentManager = getFragmentManager();
+        if ( fragmentManager!= null ){
+            fragmentManager.beginTransaction().addToBackStack("sdf")
+                    .add( R.id.frame_home, EmpDetailsFragment.getInstance( subMenuId ) ).commit();
         }
     }
 }

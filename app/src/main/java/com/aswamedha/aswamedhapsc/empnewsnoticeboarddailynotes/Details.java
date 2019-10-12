@@ -15,6 +15,20 @@ public class Details {
     @SerializedName("id")
     private String id;
 
+    @SerializedName("date_of_adding")
+    private String dateOfAdding;
+
+    @SerializedName("web_url")
+    private String webUrl;
+
+    public String getWebUrl() {
+        return webUrl;
+    }
+
+    public String getDateOfAdding() {
+        return dateOfAdding;
+    }
+
     public String getHeader() {
         return header;
     }
