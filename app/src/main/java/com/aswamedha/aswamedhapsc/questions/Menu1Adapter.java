@@ -36,7 +36,16 @@ public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ViewHolder> 
         final Menu1Model menu1Model = this.menu1ModelList.get( pos );
         String slNo = ( pos + 1 )+"";
         viewHolder.txtSlNo.setText( slNo );
-        viewHolder.txtMainMenu.setText( menu1Model.getMenu1Name() );
+        String menuName = menu1Model.getMenu1Name();
+        viewHolder.txtMainMenu.setText( menuName );
+        /*try{
+            String[] something = menuName.split("\\\\s+");
+            if ( something.length > 0 )
+                viewHolder.txtFirstLetter.setText( something[0] +" ");
+            //viewHolder.txtMainMenu.setText( menuName.substring(1 ));
+        }catch ( Exception e ){
+            //Do nothing
+        }*/
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,13 +60,14 @@ public class Menu1Adapter extends RecyclerView.Adapter<Menu1Adapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtSlNo, txtMainMenu;
+        private TextView txtSlNo, txtMainMenu, txtFirstLetter;
         private CardView cardView;
         public ViewHolder(View view ){
             super(view);
             txtSlNo = view.findViewById( R.id.txt_sl_no );
             txtMainMenu = view.findViewById( R.id.txt_main_menu );
             cardView = view.findViewById( R.id.crd );
+            txtFirstLetter = view.findViewById( R.id.txt_first_letter );
         }
     }
 }

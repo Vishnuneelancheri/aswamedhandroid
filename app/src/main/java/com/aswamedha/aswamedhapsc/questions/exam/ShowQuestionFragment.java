@@ -11,6 +11,8 @@ import android.os.CountDownTimer;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -177,7 +179,7 @@ public class ShowQuestionFragment extends Fragment implements View.OnClickListen
             }
             if (questionList.size()> 0 ){
                 initView(currentPos);
-                countDown( questionList.size() * 1000 );
+                countDown( questionList.size()* 60 * 1000 );
             }else {
                 Toast.makeText( getContext(), "No questions for you", Toast.LENGTH_SHORT).show();
             }
@@ -368,12 +370,18 @@ public class ShowQuestionFragment extends Fragment implements View.OnClickListen
         new CountDownTimer(sec, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                txtCountDown.setText("seconds remaining: " + millisUntilFinished / 1000);
+                long currentMilliSec = millisUntilFinished / 1000;
+                long reminder = currentMilliSec % 60;
+                long min =  currentMilliSec/ 60;
+                String time = "Time remaining: "  + min + ":"+ reminder;
+
+                txtCountDown.setText(Html.fromHtml( "<b>Time remaining: <font color='red'>"  + min + ":"+ reminder +"</font></b>" ));
                 //here you can have your logic to set text to edittext
             }
 
             public void onFinish() {
-                txtCountDown.setText("done!");
+                finishExam();
+                //txtCountDown.setText("done!");
             }
 
         }.start();
@@ -400,10 +408,12 @@ public class ShowQuestionFragment extends Fragment implements View.OnClickListen
             }
 
         }
-        String message = "Correct: "+ totalCorrect +"\nWrong: " + totalWrong;
+        String message = "Correct: "+ totalCorrect +"\nWrong:   " + totalWrong;
         final int correctAnswer = totalCorrect;
         final int wrongAnswer = totalWrong;
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( getActivity() );
+        Activity activity = getActivity();
+        if ( activity == null ) return;
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( activity );
         alertDialogBuilder.setTitle("Result");
         alertDialogBuilder.setMessage( message );
         alertDialogBuilder.setPositiveButton("Ok",
@@ -422,3 +432,4 @@ public class ShowQuestionFragment extends Fragment implements View.OnClickListen
     }
 
 }
+//199532122

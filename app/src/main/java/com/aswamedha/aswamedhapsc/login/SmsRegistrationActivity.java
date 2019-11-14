@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -23,6 +25,7 @@ import org.json.JSONObject;
 public class SmsRegistrationActivity extends AppCompatActivity {
     private String token, mPhoneNum;
     private int regId;
+    private ViewPager mViewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +39,17 @@ public class SmsRegistrationActivity extends AppCompatActivity {
         }catch ( Exception e ){
 
         }
-
+        mViewPager = findViewById( R.id.view_pager );
         findViewById( R.id.btn_submit ).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 submitOtp();
             }
         });
+        int[] images = {
+                R.drawable.viewpager1, R.drawable.viewpager2, R.drawable.viewpager3, R.drawable.viewpager4};
+        MyCustomPagerAdapter myCustomPagerAdapter = new MyCustomPagerAdapter( this, images );
+        mViewPager.setAdapter( myCustomPagerAdapter );
     }
     private void submitOtp(){
         EditText edtOtp = findViewById( R.id.edt_otp );
