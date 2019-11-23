@@ -57,7 +57,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="69dp"
                 android:layout_height="110dp"
-                android:src="@drawable/ic_job_search"
+                android:src="@mipmap/ic_job"
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
@@ -86,7 +86,7 @@
                 android:id="@+id/imageView5"
                 android:layout_width="69dp"
                 android:layout_height="110dp"
-                android:src="@drawable/ic_daily_notes"
+                android:src="@mipmap/ic_calender"
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
@@ -99,6 +99,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/current_affairs"
         android:layout_width="0dp"
         android:layout_height="170dp"
         android:layout_margin="2dp"
@@ -114,7 +115,7 @@
                 android:id="@+id/imageView9"
                 android:layout_width="69dp"
                 android:layout_height="110dp"
-                android:src="@drawable/ic_notice_board"
+                android:src="@mipmap/ic_pen"
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
@@ -122,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_margin="5dp"
-                android:text="@string/notice_board"/>
+                android:text="@string/current_affairs"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

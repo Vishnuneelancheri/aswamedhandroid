@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -37,7 +38,7 @@ public class SmsRegistrationActivity extends AppCompatActivity {
             regId = bundle.getInt( AswamedhamApplication.REG_ID );
             mPhoneNum = bundle.getString( AswamedhamApplication.PHONE );
         }catch ( Exception e ){
-
+            Log.d("bundle error", e.toString() );
         }
         mViewPager = findViewById( R.id.view_pager );
         findViewById( R.id.btn_submit ).setOnClickListener(new View.OnClickListener() {
@@ -47,7 +48,7 @@ public class SmsRegistrationActivity extends AppCompatActivity {
             }
         });
         int[] images = {
-                R.drawable.viewpager1, R.drawable.viewpager2, R.drawable.viewpager3, R.drawable.viewpager4};
+                R.drawable.viewpager1/*, R.drawable.viewpager2, R.drawable.viewpager3*/, R.drawable.viewpager4};
         MyCustomPagerAdapter myCustomPagerAdapter = new MyCustomPagerAdapter( this, images );
         mViewPager.setAdapter( myCustomPagerAdapter );
     }
@@ -68,7 +69,7 @@ public class SmsRegistrationActivity extends AppCompatActivity {
             params.put("reg_id", regId );
 
         }catch (JSONException e ){
-
+            //Do nothing
         }
         final MyProgressDialog myProgressDialog = new MyProgressDialog( SmsRegistrationActivity.this );
         myProgressDialog.setCancelable( false );

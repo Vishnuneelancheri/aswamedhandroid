@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -50,8 +51,9 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
             }
         });
         recyMainMenu = view.findViewById( R.id.recy_main_menu );
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager( getContext(),
-                RecyclerView.HORIZONTAL, false);
+        /*RecyclerView.LayoutManager layoutManager = new LinearLayoutManager( getContext(),
+                RecyclerView.HORIZONTAL, false);*/
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager( getContext(), 3);
         recyMainMenu.setLayoutManager( layoutManager );
         recyMainMenu.setHasFixedSize( true );
         loadData();
