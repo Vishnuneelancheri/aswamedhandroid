@@ -65,12 +65,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:text="@string/job_search"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/margin"
+        android:id="@+id/card_daily_notes"
         android:layout_width="0dp"
         android:layout_height="170dp"
         android:layout_margin="2dp"
@@ -94,6 +96,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:text="@string/daily_notes"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -123,6 +127,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:text="@string/current_affairs"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

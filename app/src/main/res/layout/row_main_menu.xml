@@ -28,7 +28,8 @@
             android:id="@+id/txt_main_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prime minister"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_margin="5dp"
             android:layout_toEndOf="@id/txt_sl_no"
             android:layout_toRightOf="@id/txt_sl_no"/>

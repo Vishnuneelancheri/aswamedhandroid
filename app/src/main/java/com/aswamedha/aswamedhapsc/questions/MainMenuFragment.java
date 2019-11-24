@@ -27,7 +27,7 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
+/**card_job_search
  * A simple {@link Fragment} subclass.
  */
 public class MainMenuFragment extends Fragment implements View.OnClickListener {
@@ -58,6 +58,8 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
         recyMainMenu.setHasFixedSize( true );
         loadData();
         view.findViewById( R.id.card_job_search ).setOnClickListener( this  );
+        view.findViewById( R.id.card_daily_notes ).setOnClickListener( this );
+        view.findViewById( R.id.current_affairs ).setOnClickListener( this );
         return view;
     }
 
@@ -126,12 +128,19 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         int id = view.getId();
         if ( id == R.id.card_job_search ){
-            FragmentManager fragmentManager = getFragmentManager();
-            if ( fragmentManager != null ){
-                fragmentManager.
-                        beginTransaction().add( R.id.frame_home, CategoryOneFragment.getInstance("1"))
-                        .addToBackStack("dl").commit();
-            }
+            goToCategoryOneFragment("1");
+        }else if ( id == R.id.card_daily_notes ){
+            goToCategoryOneFragment("2");
+        }else if ( id == R.id.current_affairs ){
+            goToCategoryOneFragment("3");
+        }
+    }
+    private void goToCategoryOneFragment(String category){
+        FragmentManager fragmentManager = getFragmentManager();
+        if ( fragmentManager != null ){
+            fragmentManager.
+                    beginTransaction().add( R.id.frame_home, CategoryOneFragment.getInstance(category))
+                    .addToBackStack("dl").commit();
         }
     }
 }
