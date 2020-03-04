@@ -29,13 +29,7 @@
 
             <TextView
                 android:id="@+id/txt_qtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:textColor="@color/black"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp" />
+                style="@style/option" />
             <TextView
                 android:id="@+id/txt_opt_a"
                 style="@style/option" />

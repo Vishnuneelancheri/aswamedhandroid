@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +89,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
             Networker.getInstance().posting(activity, url, params, new Networker.ResponseBridge() {
                 @Override
                 public void onSuccess(String response) {
+                    Log.d("mainmenuresp", response );
                     analyzeResponse( response );
                     myProgressDialog.dismiss();
                 }

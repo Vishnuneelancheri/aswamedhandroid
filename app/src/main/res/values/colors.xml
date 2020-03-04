@@ -10,6 +10,6 @@
     <color name="black">#000</color>
     <color name="blue">#1246CF</color>
     <color name="green_righ_answer">#4CAF50</color>
-    <color name="red_rong_answer">#FFFFFF</color>
+    <color name="red_rong_answer">#E95F5F</color>
     <color name="theme_blue">#7978FF</color>
 </resources>

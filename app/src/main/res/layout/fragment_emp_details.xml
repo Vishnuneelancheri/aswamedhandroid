@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:id="@+id/parent"
+    android:padding="10dp"
     tools:context=".empnewsnoticeboarddailynotes.EmpDetailsFragment">
 
     <androidx.recyclerview.widget.RecyclerView

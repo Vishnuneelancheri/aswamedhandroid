@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.aswamedha.aswamedhapsc.login.LoginActivity;
 import com.aswamedha.aswamedhapsc.questions.HomeActivity;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -17,6 +18,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_splash_screen );
+        ShimmerFrameLayout shimmerFrameLayout = findViewById( R.id.shimmerlayout );
+        shimmerFrameLayout.startShimmer();
         SharedPreferences sharedPref = getSharedPreferences(AswamedhamApplication.SHARED_PREF,Context.MODE_PRIVATE);
         final int regId = sharedPref.getInt( AswamedhamApplication.REG_ID, -1);
         new Handler().postDelayed(new Runnable() {
