@@ -14,6 +14,7 @@ public class MltpleChoiceHdrResponse {
     @SerializedName("header")
     private List<MltpleChoiceHeader> mltpleChoiceHeaderList;
 
+
     public int getStatus() {
         return status;
     }

@@ -3,6 +3,8 @@ package com.aswamedha.aswamedhapsc.questions;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +20,11 @@ public class MltpleChoiceHedrAdapter extends RecyclerView.Adapter< MltpleChoiceH
     }
     private List<MltpleChoiceHeader> mltpleChoiceHeaders;
     private HeaderSelect headerSelect;
-    public MltpleChoiceHedrAdapter(List<MltpleChoiceHeader> mltpleChoiceHeaders, HeaderSelect headerSelect ){
+    private Context mContext;
+    public MltpleChoiceHedrAdapter(List<MltpleChoiceHeader> mltpleChoiceHeaders, HeaderSelect headerSelect, Context context){
         this.headerSelect = headerSelect;
         this.mltpleChoiceHeaders = mltpleChoiceHeaders;
+        this.mContext = context;
     }
     @NonNull
     @Override
@@ -43,6 +47,10 @@ public class MltpleChoiceHedrAdapter extends RecyclerView.Adapter< MltpleChoiceH
                 headerSelect.select( mltpleChoiceHeader );
             }
         });
+        if ( mltpleChoiceHeader.getIsFinished() > 0 ){
+            viewHolder.viewAttendMark.setBackgroundColor( mContext.getResources().getColor(R.color.green_righ_answer) );
+        }
+        else viewHolder.viewAttendMark.setBackgroundColor( mContext.getResources().getColor(R.color.red_rong_answer ) );
     }
 
     @Override
@@ -53,12 +61,14 @@ public class MltpleChoiceHedrAdapter extends RecyclerView.Adapter< MltpleChoiceH
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtSlNo, txtHdr;
         private CardView cardView;
+        private View viewAttendMark;
         public ViewHolder(View view ){
             super(view);
 
             txtSlNo = view.findViewById( R.id.txt_sl_no );
             txtHdr = view.findViewById( R.id.txt_main_menu );
             cardView = view.findViewById( R.id.crd );
+            viewAttendMark = view.findViewById( R.id.view_attend_mark );
         }
     }
 }

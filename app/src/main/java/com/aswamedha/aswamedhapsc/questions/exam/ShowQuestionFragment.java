@@ -50,6 +50,7 @@ public class ShowQuestionFragment extends Fragment implements View.OnClickListen
     private ImageButton btnPrev, btnNxt;
     private SwipeRefreshLayout constraintLayout ;
     private int currentPos = 0;
+    MltpleChoiceHeader mltpleChoiceHeader;
     public ShowQuestionFragment() {
         // Required empty public constructor
     }
@@ -72,7 +73,7 @@ public class ShowQuestionFragment extends Fragment implements View.OnClickListen
         constraintLayout.setOnClickListener( this );
         txtCountDown = view.findViewById( R.id.txt_timer );
         Bundle bundle = getArguments();
-        final MltpleChoiceHeader mltpleChoiceHeader = bundle.getParcelable( HDR );
+        mltpleChoiceHeader = bundle.getParcelable( HDR );
         if ( mltpleChoiceHeader != null ){
             if ( mltpleChoiceHeader.getHdrId() > 0 ){
                 init( mltpleChoiceHeader );
@@ -277,7 +278,7 @@ public class ShowQuestionFragment extends Fragment implements View.OnClickListen
             }
             break;
             case R.id.btn_finish:
-                finishExam();
+                markAsFinishExam();
                 break;
 
 
@@ -380,12 +381,56 @@ public class ShowQuestionFragment extends Fragment implements View.OnClickListen
             }
 
             public void onFinish() {
-                finishExam();
+                markAsFinishExam();
                 //txtCountDown.setText("done!");
             }
 
         }.start();
     }
+
+    private void markAsFinishExam(){
+        String hdrId = Long.toString(mltpleChoiceHeader.getHdrId());
+        Activity activity = getActivity();
+        if ( activity != null ){
+            SharedPreferences sharedPref = activity.getSharedPreferences(AswamedhamApplication.SHARED_PREF, Context.MODE_PRIVATE);
+            final int regId = sharedPref.getInt( AswamedhamApplication.REG_ID, -1);
+            final String token = sharedPref.getString( AswamedhamApplication.TOKEN, "");
+            final JSONObject params = new JSONObject();
+            try{
+                params.put("token", token );
+                params.put("user_id", regId );
+                params.put("hdr_id", hdrId );
+
+                final MyProgressDialog myProgressDialog = new MyProgressDialog( activity );
+                myProgressDialog.setCancelable( false );
+                myProgressDialog.setCanceledOnTouchOutside( false );
+                myProgressDialog.setColor( R.color.colorAccent );
+                myProgressDialog.show();
+                String url = AswamedhamApplication.IP_ADDRESS + "EmploymentNewsDailyNotes/attendExam";
+
+                Networker.getInstance().posting(activity, url, params, new Networker.ResponseBridge() {
+                    @Override
+                    public void onSuccess(String response) {
+                        myProgressDialog.dismiss();
+                        //swipeRefreshLayout.setRefreshing( false );
+
+                        finishExam();
+                    }
+
+                    @Override
+                    public void onError(VolleyError error) {
+                        myProgressDialog.dismiss();
+                        //swipeRefreshLayout.setRefreshing( false );
+                        finishExam();
+                    }
+                });
+
+            }catch (JSONException e ){
+                //Do nothing
+            }
+        }
+    }
+
     private void finishExam(){
         isFinished = true;
         currentPos = 0;

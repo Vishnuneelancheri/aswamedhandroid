@@ -127,7 +127,7 @@ public class MltipleChoiceHeaderFragment extends Fragment {
                                         ShowQuestionFragment.getInstance( mltpleChoiceHeader ))
                                         .addToBackStack("f").commit();
                             }
-                        });
+                        }, getContext());
                 recyclerView.setAdapter( mltpleChoiceHedrAdapter );
             }
         }catch ( Exception e ){

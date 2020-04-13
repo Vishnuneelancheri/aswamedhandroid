@@ -80,6 +80,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
             }catch (JSONException e ){
                 //Do nothing
             }
+            Log.d("tokencustid", params.toString() );
             final MyProgressDialog myProgressDialog = new MyProgressDialog( activity );
             myProgressDialog.setCancelable( false );
             myProgressDialog.setCanceledOnTouchOutside( false );

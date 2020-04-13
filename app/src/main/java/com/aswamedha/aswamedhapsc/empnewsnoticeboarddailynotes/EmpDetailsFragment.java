@@ -90,7 +90,7 @@ public class EmpDetailsFragment extends Fragment {
             myProgressDialog.setColor( R.color.colorAccent );
             myProgressDialog.show();
             String url = AswamedhamApplication.IP_ADDRESS +
-                    "EmploymentNewsDailyNotes/getAllEmploymentDailyDetailsCustomer";
+                        "EmploymentNewsDailyNotes/getAllEmploymentDailyDetailsCustomer";
             Networker.getInstance().posting(activity, url, params, new Networker.ResponseBridge() {
                 @Override
                 public void onSuccess(String response) {

@@ -12,6 +12,11 @@ public class MltpleChoiceHeader implements Parcelable {
     @SerializedName("hdr")
     private String hdr;
 
+    @SerializedName("is_finished")
+    private int isFinished;
+
+    public int getIsFinished(){ return isFinished; }
+
     public long getHdrId() {
         return hdrId;
     }
@@ -29,6 +34,7 @@ public class MltpleChoiceHeader implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(this.hdrId);
         dest.writeString(this.hdr);
+        dest.writeInt(this.isFinished);
     }
 
     public MltpleChoiceHeader() {
@@ -37,6 +43,7 @@ public class MltpleChoiceHeader implements Parcelable {
     protected MltpleChoiceHeader(Parcel in) {
         this.hdrId = in.readLong();
         this.hdr = in.readString();
+        this.isFinished = in.readInt();
     }
 
     public static final Parcelable.Creator<MltpleChoiceHeader> CREATOR = new Parcelable.Creator<MltpleChoiceHeader>() {

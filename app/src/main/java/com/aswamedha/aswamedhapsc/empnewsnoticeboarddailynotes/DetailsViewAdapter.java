@@ -40,12 +40,13 @@ public class DetailsViewAdapter extends RecyclerView.Adapter<DetailsViewAdapter.
         holder.txtHeader.setText( details.getHeader() );
         holder.txtDetails.setText( details.getDetails() );
         try{
-            String pattern = "dd-MM-yyyy";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.ENGLISH);
-            Date date = simpleDateFormat.parse(details.getDateOfAdding() );
-
-            holder.txtDate.setText( simpleDateFormat.format(date) );
-        }catch ( ParseException e ){
+//            String pattern = "dd-MM-yyyy";
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.ENGLISH);
+//            Date date = simpleDateFormat.parse(details.getDateOfAdding() );
+//
+//            holder.txtDate.setText( simpleDateFormat.format(date) );
+            holder.txtDate.setText( details.getDateOfAdding());
+        }catch ( Exception e ){
             //Do nothing
         }
 

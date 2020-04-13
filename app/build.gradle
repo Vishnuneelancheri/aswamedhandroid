@@ -3,9 +3,9 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.aswamedha.aswamedhapsc"
+        applicationId 'com.aswamedha.aswamedhaeducation'
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 2
         versionName "1.0"
         multiDexEnabled true
