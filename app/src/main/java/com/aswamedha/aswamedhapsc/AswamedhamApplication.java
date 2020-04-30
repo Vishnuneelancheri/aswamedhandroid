@@ -10,7 +10,7 @@ public class AswamedhamApplication extends Application {
     public static final String PHONE = "phone";
     public static final String YTD_ID = "ytd_id";
     public static final String SHARED_PREF = "sharedpref";
-    public static final String YTD_API_KEY = "AIzaSyA0syx05ia36aNp6xjyF3B3zbhdlFTnFyw";
+   // public static final String YTD_API_KEY = "AIzaSyA0syx05ia36aNp6xjyF3B3zbhdlFTnFyw";
     public static final String DAILY_NOTES = "1";
 
 

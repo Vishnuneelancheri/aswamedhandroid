@@ -23,20 +23,20 @@ public class YoutubePlayerActivity extends YouTubeBaseActivity {
 
     }
     private void initialize(final String id ){
-        youTubePlayerView.initialize(AswamedhamApplication.YTD_API_KEY, new YouTubePlayer.OnInitializedListener() {
-            @Override
-            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-                if ( !b ){
-                    youTubePlayer.setPlayerStyle( YouTubePlayer.PlayerStyle.DEFAULT);
-                    youTubePlayer.loadVideo( id );
-
-                }
-            }
-
-            @Override
-            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-
-            }
-        });
+//        youTubePlayerView.initialize(AswamedhamApplication.YTD_API_KEY, new YouTubePlayer.OnInitializedListener() {
+//            @Override
+//            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+//                if ( !b ){
+//                    youTubePlayer.setPlayerStyle( YouTubePlayer.PlayerStyle.DEFAULT);
+//                    youTubePlayer.loadVideo( id );
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+//
+//            }
+//        });
     }
 }

@@ -1,7 +1,12 @@
 package com.aswamedha.aswamedhapsc.login;
 
+import android.app.PendingIntent;
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.IntentSender;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,6 +17,17 @@ import com.aswamedha.aswamedhapsc.AswamedhamApplication;
 import com.aswamedha.aswamedhapsc.MyProgressDialog;
 import com.aswamedha.aswamedhapsc.R;
 import com.aswamedha.aswamedhapsc.networking.Networker;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.credentials.Credential;
+import com.google.android.gms.auth.api.credentials.Credentials;
+import com.google.android.gms.auth.api.credentials.HintRequest;
+import com.google.android.gms.auth.api.phone.SmsRetriever;
+import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.SuccessContinuation;
+import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -33,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
+        smsReading();
+        requestHint();
     }
     private void login(  ){
         String phone = edtMob.getText().toString();
@@ -68,6 +86,44 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    private void smsReading(){
+        SmsRetrieverClient smsRetrieverClient = SmsRetriever.getClient(this);
+        Task<Void> task = smsRetrieverClient.startSmsRetriever();
+        task.addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                // Successfully started retriever, expect broadcast intent
+                // ...
+            }
+        });
+
+        task.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Failed to start retriever, inspect Exception for more details
+                // ...
+            }
+        });
+
+    }
+
+    private void requestHint(){
+
+
+        HintRequest request = new HintRequest.Builder()
+                .setPhoneNumberIdentifierSupported(true)
+                .build();
+        PendingIntent intent = Credentials.getClient(this).getHintPickerIntent(request);
+        //startIntentSenderForResult(intent.getIntentSender(), 100,0,0,0);
+        try{
+            startIntentSenderForResult(intent.getIntentSender(),
+                    100, null, 0, 0, 0);
+        }catch (IntentSender.SendIntentException e ){
+            //Do nothing
+        }
+
+    }
     private void analyzeReport( String response ){
         try{
             //AIzaSyA0syx05ia36aNp6xjyF3B3zbhdlFTnFyw
@@ -86,4 +142,19 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText( LoginActivity.this, "Parse error occurred", Toast.LENGTH_LONG ).show();
         }
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100) {
+            if (resultCode == RESULT_OK) {
+                Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
+                String phone = credential.getId();
+                if ( phone.length() > 9 ){
+                    phone = phone.substring(phone.length() - 10);
+                    edtMob.setText(phone);
+                }
+            }
+        }
+    }
+
 }

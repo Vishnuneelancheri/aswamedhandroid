@@ -44,13 +44,13 @@ public class NavigationViewFragment extends Fragment {
         final String phone = sharedPref.getString( AswamedhamApplication.PHONE, "");
         mTxtPhone.setText( phone );
 
-        view.findViewById( R.id.btn_ytd ).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closeActivity();
-                getFragmentManager().beginTransaction().add( R.id.frame_home , new YoutubeListFragment() ).addToBackStack("ytd").commit();
-            }
-        });
+//        view.findViewById( R.id.btn_ytd ).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                closeActivity();
+//                getFragmentManager().beginTransaction().add( R.id.frame_home , new YoutubeListFragment() ).addToBackStack("ytd").commit();
+//            }
+//        });
         view.findViewById(R.id.navigation_parent ).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

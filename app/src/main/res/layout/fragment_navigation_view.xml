@@ -31,7 +31,7 @@
         android:padding="5dp"
         android:text="Home"
         android:textAllCaps="false"/>
-    <Button
+   <!-- <Button
         android:id="@+id/btn_ytd"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -39,7 +39,7 @@
         android:background="@null"
         android:padding="5dp"
         android:text="Youtube videos"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"/>-->
 
     <Button
         android:id="@+id/btn_fb_page"
