@@ -39,11 +39,13 @@
                 android:layout_toRightOf="@id/txt_sl_no"/>
         </RelativeLayout>
 
-        <View
-            android:id="@+id/view_attend_mark"
-            android:layout_width="9dp"
-            android:layout_height="9dp"
+        <TextView
+            android:id="@+id/txt_attended"
+            android:text="@string/attended"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
             android:layout_gravity="end"
+            android:visibility="gone"
             android:layout_margin="5dp" />
 
     </LinearLayout>

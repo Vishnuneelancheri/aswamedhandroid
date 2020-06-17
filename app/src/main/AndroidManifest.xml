@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.aswamedha.aswamedhapsc">
+    package="com.aswamedha.aswamedhaeducation">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -16,16 +16,16 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/adMobId"/>
-        <activity android:name=".questions.YoutubePlayerActivity">
+        <activity android:name="com.aswamedha.aswamedhaeducation.questions.YoutubePlayerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".login.SmsRegistrationActivity"
+            android:name="com.aswamedha.aswamedhaeducation.login.SmsRegistrationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name="com.aswamedha.aswamedhaeducation.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -36,13 +36,13 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
-            android:name=".questions.HomeActivity"
+            android:name="com.aswamedha.aswamedhaeducation.questions.HomeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:screenOrientation="portrait" android:name=".login.UserRegistrationActivity" />
+            android:screenOrientation="portrait" android:name="com.aswamedha.aswamedhaeducation.login.UserRegistrationActivity" />
         <activity
             android:screenOrientation="portrait"
-            android:name=".login.LoginActivity"
+            android:name="com.aswamedha.aswamedhaeducation.login.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
