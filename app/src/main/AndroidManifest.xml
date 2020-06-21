@@ -6,26 +6,31 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".questions.RealYoutubePlayerActivity"></activity>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/adMobId"/>
-        <activity android:name="com.aswamedha.aswamedhaeducation.questions.YoutubePlayerActivity">
+            android:value="@string/adMobId" />
+
+        <activity android:name=".questions.YoutubePlayerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.aswamedha.aswamedhaeducation.login.SmsRegistrationActivity"
+            android:name=".login.SmsRegistrationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.aswamedha.aswamedhaeducation.SplashScreenActivity"
+            android:name=".questions.YoutubeKotlinActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -35,14 +40,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".questions.HomeActivity"
             android:screenOrientation="portrait"
-            android:name="com.aswamedha.aswamedhaeducation.questions.HomeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:screenOrientation="portrait" android:name="com.aswamedha.aswamedhaeducation.login.UserRegistrationActivity" />
+            android:name=".login.UserRegistrationActivity"
+            android:screenOrientation="portrait" />
         <activity
+            android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
-            android:name="com.aswamedha.aswamedhaeducation.login.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 

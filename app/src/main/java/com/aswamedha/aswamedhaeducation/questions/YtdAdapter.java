@@ -6,20 +6,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.aswamedha.aswamedhaeducation.AswamedhamApplication;
 import com.aswamedha.aswamedhaeducation.R;
+import com.aswamedha.aswamedhaeducation.questions.exam.YoutubeVideoModel;
+import com.bumptech.glide.Glide;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
 
+import java.util.List;
+
 public class YtdAdapter extends RecyclerView.Adapter<YtdAdapter.YoutubViewHolder> {
-    private String[] ytdList;
+    private List<YoutubeVideoModel> ytdList;
     private Context context;
     private ClickListener clickListener;
 
-    public YtdAdapter( String[] ytdList, Context context, ClickListener clickListener ){
-        this.ytdList = ytdList;
+    public YtdAdapter(List<YoutubeVideoModel> videos, Context context, ClickListener clickListener ){
+        this.ytdList = videos;
         this.context = context;
         this.clickListener = clickListener;
 
@@ -37,55 +43,33 @@ public class YtdAdapter extends RecyclerView.Adapter<YtdAdapter.YoutubViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull YoutubViewHolder youtubeViewHolder, final int i) {
-        youtubeViewHolder.youTubeThumbnailView.initialize(AswamedhamApplication.YTD_API_KEY,
-                new YouTubeThumbnailView.OnInitializedListener() {
-                    @Override
-                    public void onInitializationSuccess( YouTubeThumbnailView youTubeThumbnailView,
-                                                         final YouTubeThumbnailLoader youTubeThumbnailLoader) {
-                        youTubeThumbnailLoader.setVideo( ytdList[i]);
 
-                        youTubeThumbnailLoader.setOnThumbnailLoadedListener(new YouTubeThumbnailLoader.OnThumbnailLoadedListener() {
-                            @Override
-                            public void onThumbnailLoaded(YouTubeThumbnailView youTubeThumbnailView, String s) {
-                                //when thumbnail loaded successfully release the thumbnail loader as we are showing thumbnail in adapter
-                                youTubeThumbnailLoader.release();
-                            }
-
-                            @Override
-                            public void onThumbnailError(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader.ErrorReason errorReason) {
-                                //print or show error when thumbnail load failed
-
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onInitializationFailure(YouTubeThumbnailView youTubeThumbnailView, YouTubeInitializationResult youTubeInitializationResult) {
-
-                    }
-                });
+        final YoutubeVideoModel videoModel = ytdList.get(i);
         youtubeViewHolder.youTubeThumbnailView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.click( ytdList[i] );
+                clickListener.click( videoModel );
             }
         });
+        youtubeViewHolder.txtDescription.setText(videoModel.getDescription());
+        Glide.with(context).load(videoModel.getThumbNailUrl()).into(youtubeViewHolder.youTubeThumbnailView);
     }
 
     @Override
     public int getItemCount() {
-        return this.ytdList.length;
+        return this.ytdList.size();
     }
 
     public class YoutubViewHolder extends RecyclerView.ViewHolder{
-        private YouTubeThumbnailView youTubeThumbnailView;
+        private ImageView youTubeThumbnailView;
+        private TextView txtDescription;
         public YoutubViewHolder(View view){
             super(view);
             youTubeThumbnailView = view.findViewById( R.id.video_thumbnail_image_view );
-
+            txtDescription = view.findViewById(R.id.txt_descrip);
         }
     }
     public interface ClickListener{
-        void click(String  id );
+        void click(YoutubeVideoModel youtubeVideoModel );
     }
 }

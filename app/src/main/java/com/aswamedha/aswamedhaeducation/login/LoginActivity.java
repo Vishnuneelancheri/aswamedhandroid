@@ -61,9 +61,15 @@ public class LoginActivity extends AppCompatActivity {
                 googleSignIn();
             }
         });
+        edtMob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                requestHint();
+            }
+        });
         initiateGoogle();
         smsReading();
-        requestHint();
+        //requestHint();
     }
     private void login(  ){
         String phone = edtMob.getText().toString();
