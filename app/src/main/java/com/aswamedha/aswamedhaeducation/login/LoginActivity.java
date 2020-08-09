@@ -31,9 +31,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -42,6 +45,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
     private EditText edtMob;
     private String mPhoneNum;
+    private String firebasePushNotificationToken ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         });
         initiateGoogle();
         smsReading();
+        setupFirebase();
         //requestHint();
     }
     private void login(  ){
@@ -126,7 +131,19 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-
+    private void setupFirebase(){
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("TAG", "getInstanceId failed", task.getException());
+                            return;
+                        }
+                        firebasePushNotificationToken = task.getResult().getToken();
+                    }
+                });
+    }
     private void requestHint(){
 
 
@@ -191,6 +208,7 @@ public class LoginActivity extends AppCompatActivity {
         try{
             params.put("gmail", gmail );
             params.put("token", tokn );
+            params.put(AswamedhamApplication.FIREBASE_TOKEN, firebasePushNotificationToken);
 
         }catch (JSONException e ){
 
@@ -243,6 +261,7 @@ public class LoginActivity extends AppCompatActivity {
                 bundle.putInt( AswamedhamApplication.REG_ID, phoneRegModel.getRegId() );
                 bundle.putString( AswamedhamApplication.TOKEN, phoneRegModel.getRegToken() );
                 bundle.putString( AswamedhamApplication.PHONE, mPhoneNum );
+                bundle.putString(AswamedhamApplication.FIREBASE_TOKEN, firebasePushNotificationToken);
                 intent.putExtras( bundle );
                 startActivity( intent );
             }

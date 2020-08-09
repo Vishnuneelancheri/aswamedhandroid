@@ -9,6 +9,7 @@ public class AswamedhamApplication extends Application {
     public static final String TOKEN = "token";
     public static final String PHONE = "phone";
     public static final String YTD_ID = "ytd_id";
+    public static final String FIREBASE_TOKEN = "FIREBASE_TOKEN";
     public static final String SHARED_PREF = "sharedpref";
     public static final String YTD_API_KEY = "AIzaSyApcTm6oJyoLv3aIbxSV0eBSYyhCn5UBx0";
     public static final String DAILY_NOTES = "1";

@@ -31,7 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SmsRegistrationActivity extends AppCompatActivity implements MySMSBroadcastReceiver.OTPReceiveListener{
-    private String token, mPhoneNum;
+    private String token, mPhoneNum, firebaseToken;
     private int regId;
     private ViewPager mViewPager;
     private MySMSBroadcastReceiver mySMSBroadcastReceiver;
@@ -45,6 +45,7 @@ public class SmsRegistrationActivity extends AppCompatActivity implements MySMSB
             token = bundle.getString(AswamedhamApplication.TOKEN );
             regId = bundle.getInt( AswamedhamApplication.REG_ID );
             mPhoneNum = bundle.getString( AswamedhamApplication.PHONE );
+            firebaseToken = bundle.getString(AswamedhamApplication.FIREBASE_TOKEN);
         }catch ( Exception e ){
             Log.d("bundle error", e.toString() );
         }
@@ -96,6 +97,7 @@ public class SmsRegistrationActivity extends AppCompatActivity implements MySMSB
             params.put("name", "-" );
             params.put("gender", "1" );
             params.put("reg_id", regId );
+            params.put(AswamedhamApplication.FIREBASE_TOKEN, firebaseToken);
 
         }catch (JSONException e ){
             //Do nothing
