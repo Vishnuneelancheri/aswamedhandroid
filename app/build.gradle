@@ -55,6 +55,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
     implementation 'com.google.android.gms:play-services-auth-api-phone:17.4.0'
 
+    //Firebase
+    implementation 'com.google.firebase:firebase-messaging:20.2.4'
 
     //For pie diagram
     implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
