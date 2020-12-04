@@ -37,6 +37,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -87,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             params.put("phone", phone );
             mPhoneNum = phone;
         }catch (JSONException e ){
-
+            //Do nothing
         }
         final MyProgressDialog myProgressDialog = new MyProgressDialog( LoginActivity.this );
         myProgressDialog.setCancelable( false );
@@ -132,6 +133,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     private void setupFirebase(){
+       /* FirebaseMessaging.getInstance().subscribeToTopic("aswamedhapsc").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+            }
+        });
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -142,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         firebasePushNotificationToken = task.getResult().getToken();
                     }
-                });
+                });*/
     }
     private void requestHint(){
 
@@ -211,7 +218,7 @@ public class LoginActivity extends AppCompatActivity {
             params.put(AswamedhamApplication.FIREBASE_TOKEN, firebasePushNotificationToken);
 
         }catch (JSONException e ){
-
+            //Do nothing
         }
         final MyProgressDialog myProgressDialog = new MyProgressDialog( LoginActivity.this );
         myProgressDialog.setCancelable( false );
