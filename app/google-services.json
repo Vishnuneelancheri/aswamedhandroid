@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "643067891292",
-    "firebase_url": "https://aswamedha-psc-fed6c.firebaseio.com",
-    "project_id": "aswamedha-psc-fed6c",
-    "storage_bucket": "aswamedha-psc-fed6c.appspot.com"
+    "project_number": "146847400839",
+    "project_id": "aswamedha-04-01-2020",
+    "storage_bucket": "aswamedha-04-01-2020.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:643067891292:android:70349f5ecffe73efd0a099",
+        "mobilesdk_app_id": "1:146847400839:android:932ec700b6f57e3bb54922",
         "android_client_info": {
           "package_name": "com.aswamedha.education.navneeth"
         }
       },
       "oauth_client": [
         {
-          "client_id": "643067891292-bq99hkb79vla9fd5okq414c58cv5lppi.apps.googleusercontent.com",
+          "client_id": "146847400839-3vvidvr5e8scier5sdnoubc7qo7ahubf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCGLXXAlQetahEzQmYN_SwgxLsDKkECm5c"
+          "current_key": "AIzaSyBDlQKzEsGBetYJfDgiY6vN8Dm9grlPwnk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "643067891292-bq99hkb79vla9fd5okq414c58cv5lppi.apps.googleusercontent.com",
+              "client_id": "146847400839-3vvidvr5e8scier5sdnoubc7qo7ahubf.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

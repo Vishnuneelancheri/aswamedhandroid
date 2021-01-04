@@ -37,14 +37,12 @@
                 android:layout_margin="3dp"
                 android:gravity="center"
                 android:background="@null"
-                android:visibility="gone"
                 android:hint="Enter mobile number here" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
                 android:layout_marginRight="10dp"
-                android:visibility="gone"
                 android:layout_marginLeft="10dp"/>
 
 
@@ -56,11 +54,9 @@
                 android:layout_margin="3dp"
                 android:background="@drawable/sign_in_purple_gradient"
                 android:text="Submit"
-                android:visibility="gone"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
             <LinearLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
