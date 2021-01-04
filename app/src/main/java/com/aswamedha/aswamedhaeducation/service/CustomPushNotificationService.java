@@ -1,5 +1,7 @@
 package com.aswamedha.aswamedhaeducation.service;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -15,7 +17,7 @@ public class CustomPushNotificationService extends FirebaseMessagingService {
         }
     }
     private void sendNotification(String message) {
-
+        Log.d("sf", message);
     }
     @Override
     public void onNewToken(@NonNull String s) {

@@ -133,26 +133,22 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     private void setupFirebase(){
-       /* FirebaseMessaging.getInstance().subscribeToTopic("aswamedhapsc").addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-
-            }
-        });
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                    public void onComplete(@NonNull Task<String> task) {
                         if (!task.isSuccessful()) {
-                            Log.w("TAG", "getInstanceId failed", task.getException());
+                            Log.w("sf", "Fetching FCM registration token failed", task.getException());
                             return;
                         }
-                        firebasePushNotificationToken = task.getResult().getToken();
+                        Log.w("sf", task.getResult());
+                        // Get new FCM registration token
+                        firebasePushNotificationToken = task.getResult();
                     }
-                });*/
+                });
+
     }
     private void requestHint(){
-
 
         HintRequest request = new HintRequest.Builder()
                 .setPhoneNumberIdentifierSupported(true)
@@ -202,6 +198,7 @@ public class LoginActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try{
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            assert account != null;
             String email = account.getEmail();
             String token = account.getId();
             gmailSignServerCommunication(email,token);
@@ -215,7 +212,9 @@ public class LoginActivity extends AppCompatActivity {
         try{
             params.put("gmail", gmail );
             params.put("token", tokn );
-            params.put(AswamedhamApplication.FIREBASE_TOKEN, firebasePushNotificationToken);
+            if (firebasePushNotificationToken != null && !firebasePushNotificationToken.isEmpty()){
+                params.put(AswamedhamApplication.FIREBASE_TOKEN, firebasePushNotificationToken);
+            }
 
         }catch (JSONException e ){
             //Do nothing

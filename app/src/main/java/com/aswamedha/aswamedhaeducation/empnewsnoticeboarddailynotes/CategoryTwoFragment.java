@@ -20,7 +20,9 @@ import com.android.volley.VolleyError;
 import com.aswamedha.aswamedhaeducation.AswamedhamApplication;
 import com.aswamedha.aswamedhaeducation.MyProgressDialog;
 import com.aswamedha.aswamedhaeducation.R;
+import com.aswamedha.aswamedhaeducation.adservice.AddServiceCustom;
 import com.aswamedha.aswamedhaeducation.networking.Networker;
+import com.google.android.gms.ads.AdView;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -59,6 +61,9 @@ public class CategoryTwoFragment extends Fragment {
                 loadData( mainMenuId );
             }
         }
+        AdView adView = view.findViewById(R.id.adView);
+        AddServiceCustom.getInstance().initAdd(getContext(), adView );
+
         return view;
     }
     private void loadData( String mainMenuId ){

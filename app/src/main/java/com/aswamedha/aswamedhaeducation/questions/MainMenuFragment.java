@@ -20,8 +20,10 @@ import com.android.volley.VolleyError;
 import com.aswamedha.aswamedhaeducation.AswamedhamApplication;
 import com.aswamedha.aswamedhaeducation.MyProgressDialog;
 import com.aswamedha.aswamedhaeducation.R;
+import com.aswamedha.aswamedhaeducation.adservice.AddServiceCustom;
 import com.aswamedha.aswamedhaeducation.empnewsnoticeboarddailynotes.CategoryOneFragment;
 import com.aswamedha.aswamedhaeducation.networking.Networker;
+import com.google.android.gms.ads.AdView;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -33,6 +35,7 @@ import org.json.JSONObject;
 public class MainMenuFragment extends Fragment implements View.OnClickListener {
 
     private RecyclerView recyMainMenu;
+    private AdView adView;
 
     public MainMenuFragment() {
         // Required empty public constructor
@@ -51,18 +54,22 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener {
             }
         });
         recyMainMenu = view.findViewById( R.id.recy_main_menu );
+        adView = view.findViewById(R.id.adView);
         /*RecyclerView.LayoutManager layoutManager = new LinearLayoutManager( getContext(),
                 RecyclerView.HORIZONTAL, false);*/
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager( getContext(), 3);
         recyMainMenu.setLayoutManager( layoutManager );
         recyMainMenu.setHasFixedSize( true );
+        initAddView();
         loadData();
         view.findViewById( R.id.card_job_search ).setOnClickListener( this  );
         view.findViewById( R.id.card_daily_notes ).setOnClickListener( this );
         view.findViewById( R.id.current_affairs ).setOnClickListener( this );
         return view;
     }
-
+    private void initAddView(){
+        AddServiceCustom.getInstance().initAdd(getContext(), adView);
+    }
     private void loadData(){
         Activity activity = getActivity();
         if ( activity!= null ){
