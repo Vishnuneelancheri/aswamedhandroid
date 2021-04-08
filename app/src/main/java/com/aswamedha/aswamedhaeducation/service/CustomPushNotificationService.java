@@ -27,9 +27,8 @@ public class CustomPushNotificationService extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
         Log.d("token","received");
-        if (remoteMessage.getNotification() != null) {
-            sendNotification(remoteMessage.getNotification().getBody());
-        }
+        remoteMessage.getData();
+        sendNotification(remoteMessage.getData().get("message"));
     }
     private void sendNotification(String message) {
 

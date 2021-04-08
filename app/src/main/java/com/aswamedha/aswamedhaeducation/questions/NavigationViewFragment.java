@@ -62,6 +62,7 @@ public class NavigationViewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 closeActivity();
+                getFragmentManager().beginTransaction().add( R.id.frame_home , new MainMenuFragment() ).addToBackStack("mm").commit();
             }
         });
         view.findViewById( R.id.btn_fb_group).setOnClickListener(new View.OnClickListener() {

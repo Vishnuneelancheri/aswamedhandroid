@@ -4,11 +4,19 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 29
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\acer\\Desktop\\aswa signin config\\aswasignin.jks')
+            storePassword 'navneeth'
+            keyAlias 'navneeth'
+            keyPassword 'navneeth'
+        }
+    }
+    compileSdkVersion 30
     defaultConfig {
         applicationId 'com.aswamedha.aswamedhaeducation'
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 5
         versionName "2.0"
         multiDexEnabled true
@@ -19,6 +27,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -35,7 +49,7 @@ android {
     productFlavors {
         playrele {
             dimension = 'playrelease'
-            applicationId = 'com.aswamedha.education.navneeth'
+            applicationId = 'com.aswamedha.education.educ'
             versionCode = 1
             versionName = '1.1'
             minSdkVersion 16

@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "146847400839",
-    "project_id": "aswamedha-04-01-2020",
-    "storage_bucket": "aswamedha-04-01-2020.appspot.com"
+    "project_number": "316765477636",
+    "project_id": "psc-aswamedha-admob-push",
+    "storage_bucket": "psc-aswamedha-admob-push.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:146847400839:android:932ec700b6f57e3bb54922",
+        "mobilesdk_app_id": "1:316765477636:android:99644b2fb0593a236e4e51",
         "android_client_info": {
-          "package_name": "com.aswamedha.education.navneeth"
+          "package_name": "com.aswamedha.education.educ"
         }
       },
       "oauth_client": [
         {
-          "client_id": "146847400839-3vvidvr5e8scier5sdnoubc7qo7ahubf.apps.googleusercontent.com",
+          "client_id": "316765477636-8spa2fsefa9k5fdcipkv30c8pvejclod.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBDlQKzEsGBetYJfDgiY6vN8Dm9grlPwnk"
+          "current_key": "AIzaSyA_eXbzv5nnj8uFlXp9OUEIFsjQ6Kuz7PY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "146847400839-3vvidvr5e8scier5sdnoubc7qo7ahubf.apps.googleusercontent.com",
+              "client_id": "316765477636-8spa2fsefa9k5fdcipkv30c8pvejclod.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

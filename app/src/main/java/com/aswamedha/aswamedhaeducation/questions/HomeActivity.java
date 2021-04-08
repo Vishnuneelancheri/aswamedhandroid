@@ -4,13 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.android.volley.VolleyError;
+import com.aswamedha.aswamedhaeducation.AswamedhamApplication;
 import com.aswamedha.aswamedhaeducation.R;
+import com.aswamedha.aswamedhaeducation.networking.Networker;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -20,6 +26,9 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     String[] ytLinks = {"bvI9mh6D0gQ", "ITdjtQ2AX8U",
@@ -119,9 +128,39 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
-                        String token = task.getResult();
-                        Log.d("token", token);
+                        try{
+                            String token = task.getResult();
+                            Log.d("token", token);
+                            updatePushNotification(token);
+                        }catch (Exception e ){
+                            Log.d("token", e.toString());
+                        }
                     }
                 });
+    }
+    private void updatePushNotification(String token){
+        SharedPreferences sharedPref = getSharedPreferences(AswamedhamApplication.SHARED_PREF, Context.MODE_PRIVATE);
+        final int regId = sharedPref.getInt( AswamedhamApplication.REG_ID, -1);
+        final JSONObject params = new JSONObject();
+        try{
+            params.put("cust_id", regId );
+            params.put("fcm_token", token );
+
+
+        }catch (JSONException e ){
+            //Do nothing
+        }
+        String url = AswamedhamApplication.IP_ADDRESS + "CustomerRegistration/fcm_update";
+        Networker.getInstance().posting(this, url, params, new Networker.ResponseBridge() {
+            @Override
+            public void onSuccess(String response) {
+
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+
+            }
+        });
     }
 }
