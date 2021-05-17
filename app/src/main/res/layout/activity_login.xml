@@ -31,6 +31,7 @@
             android:orientation="vertical">
 
             <EditText
+                android:visibility="gone"
                 android:id="@+id/edt_mob"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
@@ -39,6 +40,7 @@
                 android:background="@null"
                 android:hint="Enter mobile number here" />
             <View
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
@@ -47,6 +49,7 @@
 
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/btn_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,6 +60,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

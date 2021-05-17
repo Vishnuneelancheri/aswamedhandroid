@@ -12,13 +12,17 @@ android {
             keyPassword 'navneeth'
         }
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
     compileSdkVersion 30
     defaultConfig {
         applicationId 'com.aswamedha.aswamedhaeducation'
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 5
-        versionName "2.0"
+        versionCode 8
+        versionName "1.2"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -50,8 +54,8 @@ android {
         playrele {
             dimension = 'playrelease'
             applicationId = 'com.aswamedha.education.educ'
-            versionCode = 1
-            versionName = '1.1'
+            versionCode = 5
+            versionName = '5.0.0'
             minSdkVersion 16
             targetSdkVersion 29
             multiDexEnabled = true

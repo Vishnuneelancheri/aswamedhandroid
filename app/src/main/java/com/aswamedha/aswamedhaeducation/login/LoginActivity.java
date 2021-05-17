@@ -133,10 +133,17 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     private void setupFirebase(){
+        final MyProgressDialog myProgressDialog = new MyProgressDialog( LoginActivity.this );
+        myProgressDialog.setCancelable( false );
+        myProgressDialog.setCanceledOnTouchOutside( false );
+        myProgressDialog.setColor( R.color.colorAccent );
+        myProgressDialog.show();
+
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
+                        myProgressDialog.dismiss();
                         if (!task.isSuccessful()) {
                             Log.w("sf", "Fetching FCM registration token failed", task.getException());
                             return;
